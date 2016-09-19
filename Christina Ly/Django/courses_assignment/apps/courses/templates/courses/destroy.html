@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Delete a course</title>
+	</head>
+	<body>
+		<h1>Are you sure you want to delete the following courses?</h1>
+		<p>Name: {{course.name}}</p>
+		<p>Description: {{course.description}}</p>
+		<a href="/"><input type = "submit" name="no" value = "No"></a>
+		<a href="/deleted"><input type = "submit" name="yes" value="Yes! I want to delete this"></a>
+	</body>
+</html>

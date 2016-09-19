@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    {%  for language in languages %}
+      {{ language.country.name }} {{ language.language }} {{ language.percentage }}
+    {% endfor %}
+
+  </body>
+</html>

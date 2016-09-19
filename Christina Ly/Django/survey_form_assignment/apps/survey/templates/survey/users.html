@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang ="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Survey Form</title>
+		{% load staticfiles %}
+		<link rel = "stylesheet" href ="{% static 'survey/css/style.css' %}" media ="screen" title ="no title" charset = "utf-8">
+	</head>
+	<body>
+		<h4>Thanks for submitting this form! You have submitted this form {{request.session.count}} times now</h4>
+		<div id ="main">
+			<p id="name"> Name: {{name}}</p>
+			<p id ="location">Dojo Location: {{location}}</p>
+			<p id = "language">Favorite Language: {{language}}</p>
+			<p id = "comments">Comment: {{comments}}<br><br>
+			<input type ="button" value="Go Back" onclick="location.href='/'">
+			</p>
+		</div>
+	</body>
+</html>

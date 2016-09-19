@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load staticfiles %}
+		<meta charset ="UTF-8">
+		<title>Disappearing Ninja</title>
+	</head>
+	<body>
+		{% if color == 'all' %}	
+			<img src ="{% static 'disappearing_ninja_app/img/donatello.jpg' %}">
+			<img src ="{% static 'disappearing_ninja_app/img/leonardo.jpg' %}">
+			<img src ="{% static 'disappearing_ninja_app/img/michelangelo.jpg' %}">
+			<img src ="{% static 'disappearing_ninja_app/img/raphael.jpg' %}">
+		{% elif color == 'blue' %}
+			<img src ="{% static 'disappearing_ninja_app/img/leonardo.jpg' %}">
+		{% elif color == 'orange' %}
+			<img src ="{% static 'disappearing_ninja_app/img/michelangelo.jpg' %}">	
+		{% elif color == 'red' %}
+			<img src ="{% static 'disappearing_ninja_app/img/raphael.jpg' %}">	
+		{% elif color == 'purple' %}
+			<img src ="{% static 'disappearing_ninja_app/img/donatello.jpg' %}">	
+		{% else %}
+			<img src ="{% static 'disappearing_ninja_app/img/notapril.jpg' %}">
+		{% endif %}
+	</body>
+</html>

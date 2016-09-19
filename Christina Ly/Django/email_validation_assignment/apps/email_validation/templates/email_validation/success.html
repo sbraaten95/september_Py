@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" type = "text/css" href="{% static 'email_validation/css/style.css' %}">
+		<title>Success Page</title>
+	</head>
+	<body>
+		<h3>The email address you entered {{request.session.email}} is a VALID email address! Thank you!</h3>
+		<h2> Email Addresses Entered:</h2>
+		<table>
+			<tbody>
+				{% for email in emails %}
+					<tr>
+						<td>{{email.email}}</td>
+						<td>{{email.created_at| date:'m/d/y'}} {{email.created_at|time:'h:i A'}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

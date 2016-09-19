@@ -1,0 +1,24 @@
+#first{
+	width:30%;
+	border:1px solid black;
+	margin-left:33%;
+	margin-top:10%;
+	padding:2em;
+	text-align:center;
+}
+h4{
+	width:30%;
+	border:1px solid black;
+	margin-left:35%;
+	margin-top:10%;
+	padding:1em;
+	background-color: #ACCB9F;
+}
+#main{
+	width:30%;
+	border:1px solid black;
+	margin-left:33%;
+	margin-top:5%;
+	padding:2em;
+	text-align:center;
+}

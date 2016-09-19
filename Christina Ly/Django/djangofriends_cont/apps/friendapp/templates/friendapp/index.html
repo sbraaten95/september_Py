@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Friendships</title>
+  </head>
+  <body>
+    <h1> I've got some friends? </h1>
+    {% for friendship_object in friendships %}
+    	<p>{{friendship_object.user.first_name}} {{friendship_object.user.last_name}}</p> 
+      <p>{{friendship_object.friend.first_name}} {{friendship_object.friend.last_name}}</p>
+      <hr>
+    {% endfor %}
+  </body>
+</html>

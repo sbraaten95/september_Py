@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Friendships</title>
+  </head>
+  <body>
+    <h1> I've got some friends? </h1>
+    {% for user in users %}
+      <p>{{user.first_name}} {{user.last_name}}</p>
+      {% for friendship in  user.usersfriend.all %}
+        {% if friendship.friend.id == 2 %}
+          <p>{{friend.first_name}} {{friend.last_name}}</p>
+        {% endif %}
+      {% endfor %}
+      <hr>
+    {% endfor %}
+  </body>
+</html>
