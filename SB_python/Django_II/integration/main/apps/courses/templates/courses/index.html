@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>ADD A NEW COURSE</h2>
+	<form action="{% url 'courses:course_add' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="name">
+		<textarea name="description"></textarea>
+		<input type="submit" value="Add">
+	</form>
+	<select name="user">
+		{% for user in users %}
+		<option value="{{user.id}}"></option>
+		{% endfor %}
+	<h1>Courses</h1>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Number of Users</th>
+			<th>Actions</th>
+		</tr>
+	</table>
+</body>
+</html>

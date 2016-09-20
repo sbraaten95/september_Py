@@ -1,0 +1,29 @@
+1.
+
+<body>
+    <h1> I've got some friends? </h1>
+    {% for friendship in friendships %}
+    <p>
+    	{{friendship.user.first_name}} {{friendship.user.last_name}} / {{friendship.friend.first_name}} {{friendship.friend.last_name}}
+    </p>
+    {% endfor %}
+  </body>
+
+friendships = Friendships.objects.all()
+print friendships
+context = {'friendships':friendships}
+
+2.
+
+friendships = Friendships.objects.filter(user__first_name = 'Michael')
+
+3.
+
+friendships = Friendships.objects.exclude(friend__first_name = 'Daniel')
+
+4.
+
+friendships = Friendships.objects.filter(friend__id = 1) | Friendships.objects.filter(friend__last_name='Hernandez')
+
+5.
+

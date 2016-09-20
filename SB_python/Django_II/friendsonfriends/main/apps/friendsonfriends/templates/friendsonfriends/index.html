@@ -17,11 +17,13 @@
 		</tr>
 		{% endfor %}
 	</table>
+
 	<form action="/add" method="post">
 		{% csrf_token %}
 		User: <input type="text" name="name">
 		<input type="submit" value="Add">
 	</form>
+
 	<form action="/merge" method="post">
 		{% csrf_token %}
 		<select name="choice1">
@@ -36,5 +38,6 @@
 		</select>
 		<input type="submit" value="Merge">
 	</form>
+	
 </body>
 </html>

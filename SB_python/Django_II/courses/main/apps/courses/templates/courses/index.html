@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h2>ADD A NEW COURSE</h2>
-	<form action="/add" method="post">
+	<form action="{% url 'course_add' %}" method="post">
 		{% csrf_token %}
 		<input type="text" name="name">
 		<textarea name="description"></textarea>
@@ -14,17 +14,16 @@
 	<h1>Courses</h1>
 	<table>
 		<tr>
-			<th>Course Name</th>
-			<th>Description</th>
-			<th>Date Added</th>
+			<th>Course</th>
+			<th>Title</th>
+			<th>Number of Users</th>
 			<th>Actions</th>
 		</tr>
 		{% for course in courses %}
 		<tr>
 			<td>{{course.name}}</td>
 			<td>{{course.description}}</td>
-			<td>{{course.created_at}}</td>
-			<td><a href="destroy/{{course.id}}"><button>Delete</button></a></td>
+			<td><a href="{% url 'course_startdestroy' id=course.id %}"><button>Delete</button></a></td>
 		</tr>
 		{% endfor %}
 	</table>

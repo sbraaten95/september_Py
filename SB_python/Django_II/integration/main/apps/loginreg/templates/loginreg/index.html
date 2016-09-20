@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<p>{{first_name}} {{last_name}} {{email}} {{password}}</p>
+
+	<h1>Registration</h1>
+	<form action="{% url 'loginreg:loginreg_register' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="first_name">
+		<input type="text" name="last_name">
+		<input type="text" name="email">
+		<input type="password" name="password">
+		<input type="password" name="dblcheck">
+		<input type="submit" value="Register">
+	</form>
+	<h1>Login</h1>
+	<form action="{% url 'loginreg:loginreg_login' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="email">
+		<input type="password" name="password">
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>
