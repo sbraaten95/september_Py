@@ -11,6 +11,11 @@ def addUser(request):
 
 	return redirect('/')
 
-def removeUser(request):
-	context = {'user': }
-	return render(request, 'first_app/removeUser.html')
+def destroy(request, id):
+	course_to_delete = Course.objects.get(id=id)
+	if request.method == "GET":
+        return render(request, 'courses_app/confirm_delete.html', { 'course' : course_to_delete })
+
+    # Otherwise it's a post and let's delete the course...
+    course_to_delete.delete()
+	return redirect('/')
