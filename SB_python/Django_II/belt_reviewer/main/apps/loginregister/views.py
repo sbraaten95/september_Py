@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from .models import User
+from ..reviews.models import Book, Review
 import bcrypt
 
 # Create your views here.
@@ -7,39 +9,44 @@ def index(request):
 	return render(request, 'loginregister/index.html')
 
 def register(request):
-	name = request.POST['name']
-	alias = request.POST['alias']
-	email = request.POST['email']
-	password = request.POST['password']
-	dblcheck = request.POST['dblcheck']
-	errors = User.objects.register(name, alias, email, password, dblcheck)
+	errors = User.objects.register(request)
+
 	if len(errors) > 0:
-		return render(request, 'loginregister/index.html', errors)
-	else:
-		password = password.encode()
-		newpass = bcrypt.hashpw(password, bcrypt.gensalt())
-		User.objects.create(name=name, alias=alias, email=email, password=newpass)
 		context = {
-			'user': User.objects.get(email=request.POST['email'])
+			'errors' : errors
 		}
-		request.session['id'] = context['user'].id
-		return render(request, 'loginregister/books.html', context)
+		return render(request, 'loginregister/index.html', context)
+
+	else:
+		password = request.POST['password'].encode()
+		newpass = bcrypt.hashpw(password, bcrypt.gensalt())
+		User.objects.create(name=request.POST['name'], alias=request.POST['alias'], email=request.POST['email'], password=newpass)
+		request.session['user'] = User.objects.get(email=request.POST['email']).email
+		context = {
+			'user': User.objects.get(email=request.POST['email']),
+			'books': Book.objects.all(),
+			'reviews': Review.objects.all()
+		}
+		return render(request, 'reviews/books.html', context)
 
 def login(request):
-	email = request.POST['email']
-	password = request.POST['password']
-	errors = User.objects.login(email, password)
+	errors = User.objects.login(request)
+
 	if len(errors) > 0:
-		return render(request, 'loginregister/index.html', errors)
-	else:
 		context = {
-			'user' : User.objects.get(email=email)
+			'errors' : errors
 		}
-		request.session['id'] = context['user'].id
-		return render(request, 'loginregister/books.html', context)
+		return render(request, 'loginregister/index.html', context)
 
-def add(request):
-	return render(request, 'loginregister/add.html')
+	else:
+		request.session['user'] = request.POST['email']
+		context = {
+			'user' : User.objects.get(email=request.POST['email']),
+			'books': Book.objects.all(),
+			'reviews': Review.objects.all()
+		}
+		return render(request, 'reviews/books.html', context)
 
-def home(request):
-	return render(request, 'loginregister/home.html')
+def logoff(request):
+	request.session.flush()
+	return redirect(reverse('loginreg:index'))

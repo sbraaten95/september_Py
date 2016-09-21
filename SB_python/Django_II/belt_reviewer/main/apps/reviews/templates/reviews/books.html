@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Welcome {{user.name}}</h1>
+	<h7><a href="{% url 'reviews:one' %}">Add Book and Review</a></h7>
+	<h7><a href="{% url 'loginreg:logoff' %}">Logout</a></h7>
+	<h3>Recent Book Reviews</h3>
+	{% for review in reviews %}
+	<h4><a href="{% url 'reviews:showuser' id=review.book.id %}">{{review.book.title}}</a></h4>
+	<p><a href="{% url 'reviews:showuser' id=review.user.id %}">{{review.user.name}}</a></p>
+	<p>{{review.review}}</p>
+	<p>Rating: {{review.rating}}</p>
+	<p><a href="{% url 'reviews:delete' id=review.book.id %}">Delete</a></p>
+	{% endfor %}
+	<h3>Other Books with Reviews</h3>
+	{% for book in books %}
+	<p>{{book.title}}</p>
+	<p><a href="{% url 'reviews:deletebook' id=book.id %}">Delete</a></p>
+	{% endfor %}
+</body>
+</html>

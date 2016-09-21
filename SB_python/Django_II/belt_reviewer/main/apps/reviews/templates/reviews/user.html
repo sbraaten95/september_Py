@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h7><a href="{% url 'reviews:one' %}">Add Book and Review</a></h7>
+	<h7><a href="{% url 'loginreg:logoff' %}">Logout</a></h7>
+	<h7><a href="{% url 'reviews:home' %}">Home</a></h7>
+	<h2>User Alias: {{user.alias}}</h2>
+	<h4>Name: {{user.name}}</h4>
+	<h4>Email: {{user.email}}</h4>
+	<h4>Total reviews: {{total}}</h4>
+	<h3>Posted reviews on the following books:</h3>
+	{% for review in reviews %}
+	{% if review.user == user %}
+	<p>{{review.book.title}}</p>
+	{% endif %}
+	{% endfor %}
+</body>
+</html>
