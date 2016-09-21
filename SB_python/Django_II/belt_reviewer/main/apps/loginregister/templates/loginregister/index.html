@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login/Register</title>
+</head>
+<body>
+	<h1>Welcome!</h1>
+	<form action="{% url 'register' %}" method="post">
+		{% csrf_token %}
+		Name: <input type="text" name="name">
+		Alias: <input type="text" name="alias">
+		Email: <input type="text" name="email">
+		Password: <input type="text" name="password">
+		<h5>*Password should be at least 8 characters</h5>
+		Confirm PW: <input type="text" name="dblcheck">
+		<input type="submit" value="Register">
+	</form>
+	<form action="{% url 'login' %}" method="post">
+		{% csrf_token %}
+		Email: <input type="text" name="email">
+		Password: <input type="password" name="password">
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>
