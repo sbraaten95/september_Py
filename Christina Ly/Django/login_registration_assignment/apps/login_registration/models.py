@@ -10,12 +10,12 @@ class UserManager(models.Manager):
 			return False
 		else:
 			return True
+			
 	def login_valid(self, email, password):
-		users = User.objects.filter(email = email)
-		for user in users:
+			user = User.objects.get(email = email)
 			if user:
 				password = password.encode()
-				if bcrypt.hashpw(password, user.password.encode()):
+				if bcrypt.hashpw(password, user.password.encode()) ==  user.password.encode():
 					return True
 				else:
 					return False

@@ -29,8 +29,10 @@ class UserManager(models.Manager):
 			return (False, errors)
 		else:
 			# pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
-			u = User.userMgr.create(first_name=first_name, last_name=last_name, email=email, password=password)
-			u.save()
+
+			# check if this is working
+			u = User.objects.create(first_name=first_name, last_name=last_name, email=email, password=password)
+			# u.save()
 			return (True, u)
 
 	def login(self, email, password):
@@ -41,17 +43,21 @@ class UserManager(models.Manager):
 			login_errors.append("Email not formatted correctly.")
 		if len(password) < 8:
 			login_errors.append("Password needs to be least 8 characters!")
-		print login_errors
-		if len(login_errors) is not 0:
-			try:
-				user = User.objects.get(email=request.POST['email'], password=request.POST['password'])
+		# print login_errors
+		if len(login_errors) is 0:
+			# try:
+				print email
+				print password
+				user = User.objects.get(email=email, password=password)
 				print user
 				# password = request.POST['password'].encode()
 				# if bcrypt.hashpw(password, user.pw_hash.encode()):
-				return (True, user)
-			except ObjectDoesNotExist:
-				pass
-		return (False, ["Email/Password does not match"])
+				if user:
+					return (True, user)
+				else:
+					return (False, ["Email/Password does not match"])
+			# except ObjectDoesNotExist:
+				# pass
 
 
 class User(models.Model):
@@ -59,4 +65,6 @@ class User(models.Model):
 	last_name = models.CharField(max_length=100)
 	email = models.EmailField(max_length=100)
 	password = models.CharField(max_length=100)
-	userMgr = UserManager()
+
+	objects = UserManager()
+	# userMgr = UserManager()

@@ -1,0 +1,8 @@
+img {
+	display: inline-block;
+	width: 20%;
+	height: auto;
+}
+#megan, #orange, #red, #purple {
+	display: none;
+}

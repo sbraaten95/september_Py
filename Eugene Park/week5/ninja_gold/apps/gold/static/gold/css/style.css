@@ -1,0 +1,32 @@
+body {
+	width: 90%
+}
+.in_line {
+	display: inline-block;
+	margin-right: 10px;
+}
+#current_gold {
+	display: inline-block;
+	border: solid black 1px;
+	width: 200px;
+}
+.options {
+	display: inline-block;
+	margin-right: 15px;
+	padding-bottom: 25px;
+	border: solid black 1px;
+	width: 21%;
+	text-align: center;
+}
+#log {
+	width: 91%;
+	height: 200px;
+	border: solid black 1px;
+	overflow-y: scroll;
+}
+.green{
+	color: green;
+}
+.red{
+	color: red;
+}

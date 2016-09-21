@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Product {{product.id}} | Semi Restful Route Demo</title>
+	</head>
+	<body>
+		<h1>Product</h1>
+		<p>Name: {{product.name}}</p>
+		<p>Description: {{product.description}}</p>
+		<p>Price: {{product.price}}</p>
+		<a name ="edit" href="{% url 'semi_restful:my_edit' id=product.id %}">Edit</a>
+		<a name ="back" href ="{% url 'semi_restful:my_products' %}">Back</a>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit Product {{product.id}} | Semi Restful Route Demo</title>
+	</head>
+		<body>
+		<h1>Edit Product {{product.id}}</h1>
+		<form action="{% url 'semi_restful:my_update' id=product.id %}" method ="post"> {% csrf_token %}
+			<label>Name</label><input type="text" name ="name">
+			<label>Description</label><input type ="text" name="description">
+			<label>Price</label><input type ="text" name ="price">
+			<input type ="submit" value ="Update">
+		</form>
+		<a name ="show" href ="{% url 'semi_restful:my_show' id=product.id %}">Show</a>
+		<a name ="back" href="{% url 'semi_restful:my_products' %}">Back</a>
+	</body>
+</html>

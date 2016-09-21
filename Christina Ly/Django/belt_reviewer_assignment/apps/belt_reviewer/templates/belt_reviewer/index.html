@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Books Home</title>
+	</head>
+	<body>
+		<a href = "{% url 'logreg:logout' %}">Logout</a>
+		<h1>Welcome {{user.first_name}}</h1>
+		<div id ='reviews'>
+			<h2>Recent Book Reviews:</h2>
+			{% for review in reviews %}
+				<a href ="{% url 'belt:detail' id=review.book.id %}">{{review.book.name}}</a>
+				{{review.review}}
+				<a href = "{% url 'logreg:reviewer' id=review.user.id %}">{{review.user.first_name}}</a> {{review.rating}}
+				{{review.created_at}}
+			{% endfor %}
+		</div>
+		<a href="{% url 'belt:add' %}">Add Book and Review</a>
+		<div id = 'others'>
+			<h2>Other Books with Reviews:</h2>
+			{% for book in books %}
+				<a href = "{% url 'belt:detail' id=book.id %}">{{book.name}}</a>
+			{% endfor %}
+		</div>
+	</body>
+</html>

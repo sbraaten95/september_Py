@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Add Book and Review</title>
+	</head>
+	<body>
+		<a href="{% url 'belt:books_home' %}">Home</a>
+		<a href = "{% url 'logreg:logout' %}">Logout</a>
+		<h2>{{book.name}}</h2>
+		<h5>Author: {{book.author}}</h5>
+		<h2>Reviews:</h2><hr>
+		{% for review in reviews %}
+			<p>Rating: {{review.rating}} star</p>
+			<p><a href="{% url 'logreg:reviewer' id=review.user.id %}">{{review.user.first_name}}</a> says: {{review.review}}</p>
+			<p>Posted on {{review.created_at}}</p>
+			{% if request.session.id == review.user.id %}
+				<a href="{% url 'belt:delete' id=review.id %}">Delete this Review</a>
+			{% endif %}
+		{% endfor %}
+		<div id ="update">
+			<form action ="{% url 'belt:update' id=book.id %}" method="post"> {% csrf_token %}
+				<label>Add a Review:</label><textarea name ="review"></textarea>
+				<label>Rating:</label>
+				<select name ="stars">
+					<option value = "1">1</option>
+					<option value = "2">2</option>
+					<option value = "3">3</option>
+				</select>
+				<input type ="submit" value ="Add Book and Review">
+			</form>
+		</div>
+	</body>
+</html>

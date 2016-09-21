@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>All Products | Semi Restful Route Demo</title>
+	</head>
+	<body>
+		<h1>Products</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{product.name}}</td>
+						<td>{{product.description}}</td>
+						<td>{{product.price}}</td>
+						<td>
+							<a href ="{% url 'semi_restful:my_show' id=product.id %}"name ="Show">Show</a>
+							<a name ="edit" href="{% url 'semi_restful:my_edit' id=product.id %}">Edit</a> 
+							<a href ="{% url 'semi_restful:my_destroy' id=product.id %}"><input type ="submit" value="Remove"></a>
+						</td>
+					</tr>	
+				{% endfor %}
+			</tbody>	
+		</table>
+		<a name ="add" href = "{% url 'semi_restful:my_create' %}">Add a new product</a>
+	</body>
+</html>

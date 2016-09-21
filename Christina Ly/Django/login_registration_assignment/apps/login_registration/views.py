@@ -16,7 +16,7 @@ def register(request):
 		request.session['first_name'] = request.POST['first_name']
 		request.session['regorlogin'] = 'registered'
 		password = password.encode('utf-8')
-		hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+		hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 		first_name = request.POST['first_name'];
 		last_name = request.POST['last_name'];
 		email = request.POST['email'];

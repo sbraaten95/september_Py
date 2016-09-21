@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang ="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Random Word Generator</title>
+	</head>
+	<body>
+		<h1>Random Word</h1>
+		<p>Attempt # {{request.session.count}}</p>
+		{{request.session.word}}
+		<form action="{% url 'word:my_word' %}" method = "post">{% csrf_token %}
+			<input type ="submit" value="Generate">
+			<a href ="{% url 'word:my_reset' %}"><input type ="button" value="Reset Count"></a>
+		</form>
+	</body>
+</html>

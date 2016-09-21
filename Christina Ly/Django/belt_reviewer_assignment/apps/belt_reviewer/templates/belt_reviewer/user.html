@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User Reviews</title>
+	</head>
+	<body>
+		<a href="{% url 'belt:books_home' %}">Home</a>
+		<a href = "{% url 'logreg:logout' %}">Logout</a>
+		<h3>User Alias: {{user.first_name}}</p>
+		<p>Name: {{user.first_name}} {{user.last_name}}</p>
+		<p>Email: {{user.email}}</p>
+		<p>Total Reviews: {{reviews|length}}</p>
+		<h5>Posted Reviews on the following books:</h5>
+		{% for review in reviews %}
+			<p> <a href = "{% url 'belt:detail' id=review.book.id %}">{{review.book.name}}</a> </p>
+		{% endfor %}
+	</body>
+</html>

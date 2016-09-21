@@ -1,0 +1,17 @@
+h1{
+	width:40%;
+	border:1px solid black;
+	padding:2em;
+	text-align: center;
+	margin-left: 27%;
+}
+.line{
+	width:20%;
+	border:1px solid black;
+	padding:2em;
+	text-align: center;
+	margin-left: 40%;
+}
+.datetime{
+	font-size: 2em
+}
