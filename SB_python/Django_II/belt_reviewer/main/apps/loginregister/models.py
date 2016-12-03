@@ -39,7 +39,6 @@ class UserManager(models.Manager):
 		try:
 			user = User.objects.get(email=request.POST['email'])
 			password = request.POST['password'].encode()
-			print user.password
 			if not bcrypt.hashpw(password, user.password.encode()):
 				errors['wrong'] = "Email/password don't match."
 

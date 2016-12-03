@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Notes</title>
+		<style>
+		input, label {
+			display: block;
+		}
+
+		div {
+			border: 1px solid black;
+			width: 150px;
+		}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script>
+
+			$(document).ready(function() {
+
+			})
+
+		</script>
+	</head>
+	<body>
+		<form action="/addNote" method="post">
+			{% csrf_token %}
+			{{addform}}
+			<input type="submit" value="Add">
+		</form>
+		{% for note in notes %}
+		<div>
+			<h4>{{note.title}}</h4>
+			<p>{{note.description}}</p>
+		</div>
+		{% endfor %}
+	</body>
+	<a href="/getData"><button>Get Data</button></a>
+	<p>{{content}}</p>
+	<p>{{th}}</p>
+</html>

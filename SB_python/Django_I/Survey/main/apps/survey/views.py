@@ -9,7 +9,8 @@ def process(request):
 		request.session['count'] += 1
 	else:
 		request.session['count'] = 1
-	request.session['data'] = [request.POST['name'], request.POST['location'], request.POST['lang'], request.POST['comm']]
+	request.session['data'] = {'name': request.POST['name'], 'location': request.POST['location'], 'lang': request.POST['lang'], 'comm': request.POST['comm']}
+	request.session['name'] = request.POST['name']
 	return redirect('/result')
 
 def result(request):

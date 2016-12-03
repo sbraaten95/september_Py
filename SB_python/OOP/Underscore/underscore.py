@@ -14,7 +14,6 @@ class Underscore(object):
         for e in alist:
             if callback(e):
                 return e
-                break
 
     def filter(self, alist, callback):
         arr = []
@@ -36,4 +35,5 @@ _ = Underscore()
 # odds = _.reject([1, 2, 3, 4, 5, 6], lambda x: x % 2 == 0)
 # find = _.find([1, 2, 3, 4, 5, 6], lambda x: x % 2 == 0)
 evens = _.reduce([1, 2, 3, 4, 5, 6], lambda memo, e: memo + e, 0)
+print evens
 # evens = _.map([1, 2, 3, 4, 5, 6], lambda x: x * 2)

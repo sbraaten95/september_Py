@@ -4,13 +4,10 @@ from connection import MySQLConnector
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 app = Flask(__name__)
 app.secret_key = "nope"
-
 mysql = MySQLConnector(app, 'email_validation')
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
 @app.route('/check', methods=['POST'])
 def check():
     flagged = True
@@ -31,8 +28,7 @@ def check():
         if mysql.query_db(query, data):
             print "Successfully saved to database"
         return redirect('/success')
-
-
+        
 @app.route('/success')
 def success():
     query = "SELECT * FROM emails"

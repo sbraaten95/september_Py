@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script>
+      function populate(res) {
+        var list = "";
+        for (var i = 0; i < res.length; i++) {
+          list += "<div class='quote'><h2>" + res[i].title + "</h2><form id='edit' method='post'><input type='hidden' name='userId' value='" + res[i].id + "'><textarea name='description'>" + res[i].description + "</textarea><input type='submit' value='Edit'></form><form id='delete' method='post'><input type='hidden' name='userId' value='" + res[i].id + "'><input type='submit' value='Delete'></form></div>";
+        }
+        $('#notes').html(list);
+      }
+      $.get('/notes/index_json', function(res) {
+        populate(res);
+      });
+      $(document).ready(function(){
+        $('#add').submit(function() {
+          $.post('/notes/create', $(this).serialize(), function(res) {
+            populate(res);
+          });
+          return false;
+        });
+      });
+      $(document).on('submit', '#edit', function() {
+        $.post('/notes/edit', $(this).serialize(), function(res) {
+          populate(res);
+        });
+        return false;
+      });
+      $(document).on('submit', '#delete', function() {
+        $.post('/notes/delete', $(this).serialize(), function(res) {
+          populate(res);
+        });
+        return false;
+      })
+    </script>
+  </head>
+  <body>
+    <h1>Ajax Notes</h1>
+    <button id="get_notes">Load Notes</button>
+    <form id="add">
+      <p>
+        <label for="title">Title</label>
+      </p>
+      <p>
+        <input type="text" name="title">
+      </p>
+      <p>
+        <label for="description">Description</label>
+      </p>
+      <p>
+        <textarea name="description"></textarea>
+      </p>
+      <input type="submit" value="Add">
+    </form>
+    <div id="notes">
+    </div>
+  </body>
+</html>

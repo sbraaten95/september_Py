@@ -9,7 +9,8 @@ def index(request):
 	return render(request, 'ninjagold/index.html')
 
 def process(request, choice):
-	request.session['activities'].reverse()
+	if 'activities' in request.session:
+		request.session['activities'].reverse()
 	result = ''
 	if choice == 'farm':
 		coin = random.randrange(10, 21)
