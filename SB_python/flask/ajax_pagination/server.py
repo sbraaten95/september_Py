@@ -21,7 +21,6 @@ def getall():
 @app.route('/filterleads', methods=['POST'])
 def filterleads():
 	name = "%" + request.form['name']
-	print name
-	return redirect('/')
+	return jsonify(mysql.query_db("SELECT * FROM leads WHERE first_name LIKE :name OR last_name LIKE :name AND  "))
 
 app.run(debug=True)
